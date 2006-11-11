@@ -1,0 +1,19 @@
+comment email notification for Mephisto
+==================================================
+
+When someone posts a comment, an email will be sent to the article author.
+
+
+Install
+==========
+   ruby script/install svn://hasno.info/mephisto/plugins/mephisto_comment_email
+   copy the vendor/plugins/mephisto_comment_email/app/views/comment_notifier dir
+   to app/views.
+
+Usage
+==========
+   setup the basic actionmailer parameters, and post a comment...
+
+
+
+(C) Mark Guzman 2006, under an MIT license.
