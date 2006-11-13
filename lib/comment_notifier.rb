@@ -11,4 +11,8 @@ class CommentNotifier < ActionMailer::Base
     subject     "%s %s posted a comment about \"%s\"" % [ @@mail_prefix, comment.author, comment.article.title ]
     body        "comment" => comment
   end
+
+  def self.template_root
+    File.dirname(__FILE__) + '/../views'
+  end
 end
