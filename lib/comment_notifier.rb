@@ -2,6 +2,9 @@ class CommentNotifier < ActionMailer::Base
   @@mail_prefix = "(blog)"
   @@mail_from_prefix = "Mephisto Blog"
   @@mail_from = nil
+  cattr_accessor :mail_prefix
+  cattr_accessor :mail_from_prefix
+  cattr_accessor :mail_from
 
   def comment_added( comment )
     mail_from = @@mail_from
