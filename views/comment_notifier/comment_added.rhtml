@@ -1,4 +1,33 @@
-article: <%= @comment.article.title %>
-author: <%= @comment.author %>
-comment:
-  <%= @comment.body %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<% 
+article_url = nil
+admin_url = nil
+if a.akismet_url?
+  article_url = "%s/%s" % [ s.akismet_url, a.full_permalink ]
+  admin_url = "%s/admin/articles/comments/%d#comment-%d" % [ s.akismet_url, @comment.article.id, @comment.id ]
+end
+
+-%>
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+  <head>
+    <style type="text/css">
+      label { font-weight: bold; }
+      #comment {
+        margin-left: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <label>article</label>: <span id="title"><% 
+      if article_url %><%= link_to @comment.article.title, article_url %><%
+      else %><%= @comment.article.title %><%
+      end -%></span><br/>
+    <label>author</label>: <span id="author"><% 
+      if @comment.email -%><a href="mailto:<%=@comment.email%>"><%= @comment.author %></a><%
+      else -%><%= @comment.author %><%
+      end -%></span><br/>
+    <label>status</label>: <%= @comment.approved? ? "approved" : "awaiting approval" %><br/>
+    <label>comment</label><% if admin_url %>(<%= link_to "administer", admin_url %>)<% end -%>:<br/>
+    <div id="comment"><%= @comment.body %></div>
+  </body>
+</html>
