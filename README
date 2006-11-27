@@ -8,6 +8,30 @@ Install
 ==========
    ruby script/install svn://hasno.info/mephisto/plugins/mephisto_comment_email
 
+   There are a few options availible:
+     * mail prefix - Will be prepended to the email subject: 
+        (blog) segfault posted a comment on "my best blog post"
+        To change the "(blog)" portion, add the following to
+        the end of environment.rb:
+          CommentNotifier.mail_prefix = "(myblogname)"
+     
+     * mail_from_name - The "full-name" for the sender:
+        If you'd like to change it, append the following to environment.rb:
+          CommentNotifier.mail_from_name = "My Blog"
+
+     * mail_from - If you'd like mail to come from some address other than
+        the site-owner's address add the following in the usual place:
+          CommentNotifier.mail_from = "segyblog@hasno.dot.info"
+
+     * only_approved - If you'd only like to receive email regarding approved
+        comments add the following to environment.rb:
+          CommentNotifier.only_approved = true
+
+   If you would like to see links to the article and the article's admin page
+   in the email sent to the author, then make sure to set an akismet_url in
+   the site's settings.
+
+
 Usage
 ==========
    setup the basic actionmailer parameters, and post a comment...
