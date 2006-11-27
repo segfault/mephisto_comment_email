@@ -10,6 +10,7 @@ class CommentNotifier < ActionMailer::Base
 
   def comment_added( comment )
     return if (only_approved && !comment.approved?)
+    return if (comment.created_at != comment.updated_at) # assuming we don't want to double post
 
     mail_from = @@mail_from
     mail_from = comment.site.email unless mail_from
