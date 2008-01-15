@@ -3,7 +3,7 @@
 article_url = nil
 admin_url = nil
 if @comment.article.site.akismet_url?
-  akismet_url = @comment.article.site.akismet_url
+  akismet_url = (CommentNotifier.blog_url || @comment.article.site.akismet_url )
   permalink = @comment.article.full_permalink  
   article_url = akismet_url + permalink 
   admin_url = "%s/admin/articles/comments/%d#comment-%d" % [ akismet_url, @comment.article.id, @comment.id ]
