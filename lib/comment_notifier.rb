@@ -29,3 +29,5 @@ class CommentNotifier < ActionMailer::Base
     File.dirname(__FILE__) + '/../views'
   end
 end
+
+require File.expand_path(File.dirname(__FILE__) + "/config.rb")
