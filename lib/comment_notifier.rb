@@ -13,6 +13,10 @@ class CommentNotifier < ActionMailer::Base
   cattr_accessor :only_approved
 
   def comment_added( comment )
+    puts "*"*20
+    puts "IN comment_added"
+    puts "*"*20
+
     return if (only_approved && !comment.approved?)
     return if (comment.created_at != comment.updated_at) # assuming we don't want to double post
 
