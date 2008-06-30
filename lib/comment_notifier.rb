@@ -11,15 +11,15 @@ class CommentNotifier < ActionMailer::Base
   cattr_accessor :mail_from
   cattr_accessor :mail_to
   cattr_accessor :only_approved
+  cattr_accessor :debug_plugin
 
   def comment_added( comment )
-    puts "*"*20
-    puts "IN comment_added"
-    puts "*"*20
+    puts "IN comment_added" if debug_plugin
 
     return if (only_approved && !comment.approved?)
-    return if (comment.created_at != comment.updated_at) # assuming we don't want to double post
+    return if (comment.updated_at && comment.created_at != comment.updated_at) # assuming we don't want to double post
 
+    puts "setting up mailer" if debug_plugin
     mail_from = @@mail_from
     mail_from = comment.site.email unless mail_from
     from         "%s <%s>" % [ @@mail_from_name, mail_from ]
@@ -34,4 +34,5 @@ class CommentNotifier < ActionMailer::Base
   end
 end
 
+puts "comment notifier added"
 require File.expand_path(File.dirname(__FILE__) + "/config.rb")
