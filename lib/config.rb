@@ -6,3 +6,4 @@
 # CommentNotifier.only_approved = true
 # CommentNotifier.mail_from = "nobody@example.com"
 # CommentNotifier.mail_prefix = "(TravelBlog)"
+# CommentNotifier.debug_plugin = true   # prints a bunch of info to stdout regarding what's going on
