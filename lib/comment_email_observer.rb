@@ -9,7 +9,7 @@ class CommentEmailObserver < ActiveRecord::Observer
     Thread.new( comment ) do |cmt|
       CommentNotifier::deliver_comment_added( cmt )
     end
-    puts "end after_save" if Commentdebug_plugin
+    puts "end after_save" if CommentNotifier.debug_plugin
   rescue
     # ignore?, comment notification shouldn't crash the blog
       puts "Went Boom due to: #{$!}"
