@@ -27,6 +27,7 @@ end
       if @comment.author_email -%><a href="mailto:<%=@comment.author_email%>"><%= @comment.author %></a><%
       else -%><%= @comment.author %><%
       end -%></span><br/>
+    <label>author ip</label> <span id="author_ip"><%= @comment.author_ip %></span><br/>
     <label>status</label>: <%= @comment.approved? ? "approved" : "awaiting approval" %><br/>
     <label>comment</label><% if admin_url 
                            -%>(<%= link_to "administer", admin_url %>)<% 
